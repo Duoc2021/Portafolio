@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}  {% load static %} 
+{% load crispy_forms_tags %}
+
+
+
+{% block contenido %}
+   
+{% for p in departamento %}
+        
+<div class="col-sm-4" style="padding-bottom: 1cm; padding-top: 1cm; padding-left: 1cm;   padding-right: 1cm;">
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                {% if p.imagen %}
+                <img width="150" height="350" class="card-img-top" src="{{ p.imagen.url }}" alt="..." />
+                {% endif %}
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                {% if p.imagen2 %}
+                <img width="150" height="350" class="card-img-top" src="{{ p.imagen2.url }}" alt="..." />
+                {% endif %}
+              </div>
+              <div class="carousel-item">
+                {% if p.imagen3 %}
+                <img width="150" height="350" src="{{ p.imagen3.url }}" class="d-block w-100" alt="...">
+                {% endif %}
+              </div>
+              
+            </div>
+        
+          </div>
+      <div class="card-body">
+        <h5 class="card-title">{{p.nombre}}</h5>
+        <p class="card-text">{{p.descripcion}}</p>  
+        <h5 class="card-title">{{p.ubicacion}}</h5>
+        <h5 class="card-title">${{ p.precio }}</h5>
+        <a href="{% url 'agregar_reserva' %}" class="btn btn-primary" >Reservar</a>
+      </div>
+    </div>
+
+{% endfor %}
+
+{% endblock  %}

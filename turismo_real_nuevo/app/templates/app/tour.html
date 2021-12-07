@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}  {% load static %} 
+
+{% block contenido %}
+        <!-- Section-->
+    {% for p in tour %}
+                
+    <div class="col-sm-4">
+    {% if p.imagen %}
+    <img width="150" height="350" class="card-img-top" src="{{ p.imagen.url }}" alt="..." />
+    {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{p.nombre}}</h5>
+            <p class="card-text">{{p.descripcion}}</p>
+            <h5 class="card-title">${{ p.precio }}</h5>
+            <a href="{% url 'agregar_reserva' %}" class="btn btn-primary" >Reservar</a>
+        </div>
+    </div>
+    {% endfor %}
+      
+
+
+{% endblock  %}

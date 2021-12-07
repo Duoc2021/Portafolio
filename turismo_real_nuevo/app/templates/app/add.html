@@ -1,0 +1,5 @@
+<form action="{% url 'add' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="departamento_id" value="{{departamento.id}}">
+    <button type="submit" class="btn btn-warning">AGREGAR AL CARRITO</button>
+</form>

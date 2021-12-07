@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}  {% load static %} 
+
+{% block contenido %}
+{% load humanize %}
+
+<br><br>
+<div class="card">
+    <div class="card-body">
+        <h2 style = "font-family:calibri;">Listado de Proveedores</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive">
+            <tr>
+                <th>Tipo Proveedor</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Pago</th>
+                <th>Correo</th>
+                <th>Opciones</th>
+            </tr>
+        
+            {% for p in proveedor %}
+        
+            <tr>
+                <td>{{ p.tipo_proveedor | title }}</td>
+                <td>{{ p.nombre | title }}</td>
+                <td>+{{ p.telefono | title }}</td>
+                <td>${{ p.pago | intcomma }}</td>
+                <td>{{ p.correo | title }}</td>
+                
+                <td>
+                    <a href="{% url 'modificar_proveedor' p.id %}" class="btn btn-info btn-sm">Modificar</a>
+                    <a href="{% url 'eliminar_proveedor' p.id %}"class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        
+            {% endfor %}
+        
+        
+        </table>
+    </div>
+</div>
+
+
+
+
+{% endblock  %}

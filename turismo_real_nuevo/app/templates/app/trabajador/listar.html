@@ -1,0 +1,58 @@
+{% extends 'app/base.html' %}  {% load static %} 
+
+{% block contenido %}
+{% load humanize %}
+
+<br><br>
+<div class="card">
+    <div class="card-body">
+        <h2 style = "font-family:calibri;">Listado de Trabajadores</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive">
+            <tr>
+                <th>Tipo trabajador</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Telefono</th>
+                <th>Sexo</th>
+                <th>Pago</th>
+                <th>Correo</th>
+                <th>Opciones</th>
+                
+                
+            </tr>
+        
+            {% for p in trabajador %}
+        
+            <tr>
+                <td>{{ p.tipo_trabajador | title }}</td>
+                <td>{{ p.nombre | title }}</td>
+                <td>{{ p.apellido | title }}</td>
+                <td>{{ p.edad | intcomma }}</td>
+                <td>{{ p.telefono }}</td>
+                <td>{{ p.sexo | intcomma }}</td>
+                <td>${{ p.pago | intcomma }}</td>
+                <td>{{ p.correo | title }}</td>
+                
+                <td>
+                    {% if perms.app.change_trabajador %}
+                    <a href="{% url 'modificar_trabajador' p.id %}" class="btn btn-info btn-sm">Modificar</a>
+                    {% endif %}
+                    {% if perms.app.delete_trabajador %}
+                    <a href="{% url 'eliminar_trabajador' p.id %}"class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
+                </td>
+            </tr>
+        
+            {% endfor %}
+        
+        
+        </table>
+    </div>
+</div>
+
+
+
+
+{% endblock  %}

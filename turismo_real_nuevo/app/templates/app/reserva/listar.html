@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}  {% load static %} 
+
+{% block contenido %}
+{% load humanize %}
+
+<br><br>
+<div class="card ">
+    <div class="card-body">
+        <h2 style = "font-family:calibri;">Listado de Reservas</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive">
+            <tr class="text-center">
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Cantidad de dias</th>
+                <th>Estado</th>
+                <th>Departamento</th>
+                <th>Opciones</th>
+                
+            </tr>
+        
+            {% for p in reserva %}
+        
+            <tr class="text-center">
+                <td>{{p.nombre | title}}</td>
+                <td>{{p.correo | title}}</td>
+                <td>{{p.cant_dias}} </td>
+                <td>{{p.estado | title}}</td>
+                <td>{{p.departamento | title}}</td>
+                <td>{{p.opciones}} 
+                    <a href="{% url 'modificar_reserva' p.id %}" class="btn btn-info btn-sm">Modificar</a>
+                    <a href="{% url 'eliminar_reserva' p.id %}"class="btn btn-danger btn-sm">Eliminar</a>
+                </td>            
+            </tr>
+            {% endfor %}
+        
+        
+        </table>
+    </div>
+</div>
+
+
+
+
+{% endblock  %}
